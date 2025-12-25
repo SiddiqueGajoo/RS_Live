@@ -1,0 +1,348 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>RS Live - Cricket Streaming Platform</title>
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        body {
+            font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+            background: linear-gradient(135deg, #242424 0%, #1a1a1a 100%);
+            color: #ffffff;
+            min-height: 100vh;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            padding: 20px;
+        }
+
+        .container {
+            max-width: 900px;
+            width: 100%;
+        }
+
+        .header {
+            text-align: center;
+            margin-bottom: 50px;
+            animation: fadeInDown 0.8s ease-out;
+        }
+
+        .logo {
+            width: 120px;
+            height: 120px;
+            background: linear-gradient(135deg, #2B524A 0%, #3d6e63 100%);
+            border-radius: 30px;
+            margin: 0 auto 20px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            font-size: 48px;
+            font-weight: bold;
+            box-shadow: 0 10px 40px rgba(43, 82, 74, 0.4);
+            animation: pulse 2s ease-in-out infinite;
+        }
+
+        h1 {
+            font-size: 3em;
+            margin-bottom: 10px;
+            background: linear-gradient(135deg, #2B524A 0%, #5fb8a3 100%);
+            -webkit-background-clip: text;
+            -webkit-text-fill-color: transparent;
+            background-clip: text;
+        }
+
+        .tagline {
+            font-size: 1.2em;
+            color: #888;
+            margin-bottom: 10px;
+        }
+
+        .description {
+            font-size: 1em;
+            color: #aaa;
+            max-width: 600px;
+            margin: 0 auto;
+        }
+
+        .download-section {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+            gap: 30px;
+            margin-top: 40px;
+            animation: fadeInUp 0.8s ease-out 0.3s both;
+        }
+
+        .download-card {
+            background: rgba(43, 82, 74, 0.1);
+            border: 2px solid #2B524A;
+            border-radius: 20px;
+            padding: 40px 30px;
+            text-align: center;
+            transition: all 0.3s ease;
+            position: relative;
+            overflow: hidden;
+        }
+
+        .download-card::before {
+            content: '';
+            position: absolute;
+            top: 0;
+            left: -100%;
+            width: 100%;
+            height: 100%;
+            background: linear-gradient(90deg, transparent, rgba(43, 82, 74, 0.2), transparent);
+            transition: left 0.5s ease;
+        }
+
+        .download-card:hover::before {
+            left: 100%;
+        }
+
+        .download-card:hover {
+            transform: translateY(-10px);
+            box-shadow: 0 20px 50px rgba(43, 82, 74, 0.3);
+            border-color: #5fb8a3;
+        }
+
+        .device-icon {
+            font-size: 60px;
+            margin-bottom: 20px;
+            filter: drop-shadow(0 5px 15px rgba(43, 82, 74, 0.5));
+        }
+
+        .card-title {
+            font-size: 1.8em;
+            margin-bottom: 10px;
+            color: #ffffff;
+        }
+
+        .card-subtitle {
+            color: #888;
+            margin-bottom: 25px;
+            font-size: 0.95em;
+        }
+
+        .download-btn {
+            display: inline-block;
+            background: linear-gradient(135deg, #2B524A 0%, #3d6e63 100%);
+            color: white;
+            padding: 15px 40px;
+            border-radius: 50px;
+            text-decoration: none;
+            font-weight: bold;
+            font-size: 1.1em;
+            transition: all 0.3s ease;
+            box-shadow: 0 5px 20px rgba(43, 82, 74, 0.4);
+            position: relative;
+            overflow: hidden;
+        }
+
+        .download-btn::before {
+            content: '';
+            position: absolute;
+            top: 50%;
+            left: 50%;
+            width: 0;
+            height: 0;
+            border-radius: 50%;
+            background: rgba(255, 255, 255, 0.2);
+            transform: translate(-50%, -50%);
+            transition: width 0.6s, height 0.6s;
+        }
+
+        .download-btn:hover::before {
+            width: 300px;
+            height: 300px;
+        }
+
+        .download-btn:hover {
+            transform: scale(1.05);
+            box-shadow: 0 8px 30px rgba(43, 82, 74, 0.6);
+        }
+
+        .download-btn span {
+            position: relative;
+            z-index: 1;
+        }
+
+        .features {
+            display: flex;
+            justify-content: center;
+            gap: 40px;
+            margin-top: 60px;
+            flex-wrap: wrap;
+            animation: fadeIn 0.8s ease-out 0.6s both;
+        }
+
+        .feature {
+            text-align: center;
+            max-width: 200px;
+        }
+
+        .feature-icon {
+            font-size: 40px;
+            margin-bottom: 10px;
+        }
+
+        .feature-text {
+            color: #aaa;
+            font-size: 0.95em;
+        }
+
+        .developer-section {
+            text-align: center;
+            margin-top: 60px;
+            padding-top: 40px;
+            border-top: 1px solid rgba(43, 82, 74, 0.3);
+            animation: fadeIn 0.8s ease-out 0.9s both;
+        }
+
+        .developer-text {
+            color: #888;
+            font-size: 1em;
+        }
+
+        .developer-link {
+            color: #2B524A;
+            text-decoration: none;
+            font-weight: 600;
+            transition: all 0.3s ease;
+            position: relative;
+        }
+
+        .developer-link::after {
+            content: '';
+            position: absolute;
+            width: 0;
+            height: 2px;
+            bottom: -2px;
+            left: 0;
+            background: linear-gradient(135deg, #2B524A 0%, #5fb8a3 100%);
+            transition: width 0.3s ease;
+        }
+
+        .developer-link:hover {
+            color: #5fb8a3;
+        }
+
+        .developer-link:hover::after {
+            width: 100%;
+        }
+
+        @keyframes fadeInDown {
+            from {
+                opacity: 0;
+                transform: translateY(-30px);
+            }
+            to {
+                opacity: 1;
+                transform: translateY(0);
+            }
+        }
+
+        @keyframes fadeInUp {
+            from {
+                opacity: 0;
+                transform: translateY(30px);
+            }
+            to {
+                opacity: 1;
+                transform: translateY(0);
+            }
+        }
+
+        @keyframes fadeIn {
+            from {
+                opacity: 0;
+            }
+            to {
+                opacity: 1;
+            }
+        }
+
+        @keyframes pulse {
+            0%, 100% {
+                transform: scale(1);
+            }
+            50% {
+                transform: scale(1.05);
+            }
+        }
+
+        @media (max-width: 768px) {
+            h1 {
+                font-size: 2em;
+            }
+
+            .tagline {
+                font-size: 1em;
+            }
+
+            .download-section {
+                grid-template-columns: 1fr;
+            }
+
+            .features {
+                gap: 30px;
+            }
+        }
+    </style>
+</head>
+<body>
+    <div class="container">
+        <div class="header">
+            <div class="logo">🏏</div>
+            <h1>RS Live</h1>
+            <p class="tagline">Your Ultimate Cricket Streaming Platform</p>
+            <p class="description">Experience live cricket action with HD streaming, real-time scores, and comprehensive match coverage</p>
+        </div>
+
+        <div class="download-section">
+            <div class="download-card">
+                <div class="device-icon">📱</div>
+                <h2 class="card-title">Android App</h2>
+                <p class="card-subtitle">For Smartphones & Tablets</p>
+                <a href="https://drive.google.com/uc?export=download&id=1hgTlP9MjLRsDUYxYtdgA50_jrnfKJPz5" class="download-btn">
+                    <span>📥 Download APK</span>
+                </a>
+            </div>
+
+            <div class="download-card">
+                <div class="device-icon">📺</div>
+                <h2 class="card-title">LED/TV App</h2>
+                <p class="card-subtitle">For Android TV & Large Screens</p>
+                <a href="https://drive.google.com/uc?export=download&id=1t6mjkKgVe84DBBFOQu_QLg4YCpWDaFp2" class="download-btn">
+                    <span>📥 Download APK</span>
+                </a>
+            </div>
+        </div>
+
+        <div class="features">
+            <div class="feature">
+                <div class="feature-icon">⚡</div>
+                <p class="feature-text">Lightning Fast Streaming</p>
+            </div>
+            <div class="feature">
+                <div class="feature-icon">🎯</div>
+                <p class="feature-text">Live Match Updates</p>
+            </div>
+            <div class="feature">
+                <div class="feature-icon">🔒</div>
+                <p class="feature-text">Secure & Reliable</p>
+            </div>
+        </div>
+
+        <div class="developer-section">
+            <p class="developer-text">
+                Developed by <a href="https://siddiquegajoo.github.io/" target="_blank" class="developer-link">Siddique Aslam</a>
+            </p>
+        </div>
+    </div>
+</body>
+</html>
