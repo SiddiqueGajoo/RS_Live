@@ -235,6 +235,75 @@
             width: 100%;
         }
 
+        .progress-container {
+            margin-top: 20px;
+            width: 100%;
+            background: rgba(255, 255, 255, 0.1);
+            border-radius: 50px;
+            overflow: hidden;
+            height: 40px;
+            position: relative;
+            box-shadow: inset 0 2px 10px rgba(0, 0, 0, 0.3);
+        }
+
+        .progress-bar {
+            height: 100%;
+            background: linear-gradient(90deg, #2B524A 0%, #5fb8a3 100%);
+            width: 0%;
+            transition: width 0.3s ease;
+            border-radius: 50px;
+            position: relative;
+            overflow: hidden;
+        }
+
+        .progress-bar::after {
+            content: '';
+            position: absolute;
+            top: 0;
+            left: 0;
+            bottom: 0;
+            right: 0;
+            background: linear-gradient(90deg, transparent, rgba(255, 255, 255, 0.3), transparent);
+            animation: shimmer 2s infinite;
+        }
+
+        @keyframes shimmer {
+            0% {
+                transform: translateX(-100%);
+            }
+            100% {
+                transform: translateX(100%);
+            }
+        }
+
+        .progress-text {
+            position: absolute;
+            top: 50%;
+            left: 50%;
+            transform: translate(-50%, -50%);
+            color: white;
+            font-weight: bold;
+            font-size: 1.1em;
+            text-shadow: 0 2px 5px rgba(0, 0, 0, 0.5);
+            z-index: 10;
+        }
+
+        .download-info {
+            margin-top: 15px;
+            color: #aaa;
+            font-size: 0.9em;
+        }
+
+        .version-info {
+            margin-top: 15px;
+            color: #888;
+            font-size: 0.9em;
+            padding: 8px 16px;
+            background: rgba(43, 82, 74, 0.2);
+            border-radius: 20px;
+            display: inline-block;
+        }
+
         @keyframes fadeInDown {
             from {
                 opacity: 0;
@@ -308,9 +377,12 @@
                 <div class="device-icon">📱</div>
                 <h2 class="card-title">Android App</h2>
                 <p class="card-subtitle">For Smartphones & Tablets</p>
-                <a href="https://drive.google.com/uc?export=download&id=1hgTlP9MjLRsDUYxYtdgA50_jrnfKJPz5" class="download-btn">
+                <a href="https://github.com/SiddiqueGajoo/RS_Live/releases/download/v1.0.0/RS.Live.v1.0.0.apk" class="download-btn" download="RS.Live.v1.0.0.apk">
                     <span>📥 Download APK</span>
                 </a>
+                <div class="version-info">
+                    <span>Version 1.0.0</span>
+                </div>
             </div>
 
             <div class="download-card">
